@@ -15,7 +15,8 @@
         --x : 10px;
         --y : 10px;
         --rotate : 0;
-        transform: translateX(var(--x)) translateY(var(--y)) rotate(var(--rotate));
+        --rotateX : 0;
+        transform: translateX(var(--x)) translateY(var(--y)) rotateY(var(--rotateX)) rotate(var(--rotate));
         transition:transform 0.3s ;
     }
 </style>
@@ -28,6 +29,7 @@
         let y = 0;
         const speed = 50 ;  
         let rotated = 0;
+        let flipped = false;
 
         function handlekeydown(e) {
             // console.log(e.key);
@@ -45,11 +47,13 @@
                     rotated = 90;
                     break;
                 case 'ArrowLeft':
-                    x -= 1;             
+                    x -= 1;   
+                    flipped = true;
                     rotated = 0;
                     break;
                 case 'ArrowRight':
-                    x += 1;                 
+                    x += 1; 
+                    flipped = false;
                     rotated = 0;
                     break;
                 default:
@@ -60,7 +64,8 @@
             // cat.style.transform = `translateX(var(--${x})) translateY(var(--${y}))`
             // cat.style['background'] = 'red';
             cat.setAttribute('style',
-            `--x:${x*speed}px; 
+            `--rotateX: ${flipped ? '180deg' : '0' };
+             --x:${x*speed}px; 
             --y:${y*speed}px;
             --rotate:${rotated}deg;
              `);

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<style>
+    .cat {
+        /* position: absolute; */
+        position: relative;
+        --x : 10px;
+        --y : 10px;
+        --rotate : 0;
+        transform: translateX(var(--x)) translateY(var(--y)) rotate(var(--rotate));
+        transition:transform 0.3s ;
+    }
+</style>
+    <img width="900" src="./cat.png" alt="cat" class="cat">
+
+    <script>
+        const cat = document.querySelector('.cat');
+        //for movement of cat
+        let x = 0;
+        let y = 0;
+        const speed = 50 ;  
+        let rotated = 0;
+
+        function handlekeydown(e) {
+            // console.log(e.key);
+            if (!e.key.includes('Arrow')) {
+                return;
+            } //one-liner if else condition 
+            console.log(event.key);
+            switch (event.key) {
+                case 'ArrowUp':
+                    y -= 1;
+                    rotated = -90;
+                    break;
+                case 'ArrowDown':
+                    y += 1;
+                    rotated = 90;
+                    break;
+                case 'ArrowLeft':
+                    x -= 1;             
+                    rotated = 0;
+                    break;
+                case 'ArrowRight':
+                    x += 1;                 
+                    rotated = 0;
+                    break;
+                default:
+                    console.log('Error Key');
+                    break;
+            }
+            console.log(x,y);
+            // cat.style.transform = `translateX(var(--${x})) translateY(var(--${y}))`
+            // cat.style['background'] = 'red';
+            cat.setAttribute('style',
+            `--x:${x*speed}px; 
+            --y:${y*speed}px;
+            --rotate:${rotated}deg;
+             `);
+
+        }
+        window.addEventListener('keydown', handlekeydown);
+    </script>
+
+     </body> </html>

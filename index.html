@@ -18,8 +18,14 @@
         transform: translateX(var(--x)) translateY(var(--y)) rotate(var(--rotate));
         transition:transform 0.3s ;
     }
+    .center{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
 </style>
-    <img width="900" src="./cat.png" alt="cat" class="cat">
+    <img width="200" height="200" src="./cat.png" alt="cat" class="cat center">
 
     <script>
         const cat = document.querySelector('.cat');
